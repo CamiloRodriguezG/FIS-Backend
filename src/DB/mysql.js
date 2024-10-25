@@ -33,8 +33,7 @@ conexionDB()
 function ejecutarQuery(query){
     return new Promise((resolve, reject)=>{
         conexion.query(query, (error, result)=>{
-            if(error) return reject(error);
-            resolve(result);
+            return error ? reject(error) : resolve(result)
         })
     })
 }

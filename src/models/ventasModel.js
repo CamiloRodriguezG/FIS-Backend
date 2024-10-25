@@ -1,20 +1,9 @@
 const respuestas = require('../res')
-const DAO = require('../DAO/estampasDAO')
+const DAO = require('../DAO/ventasDAO')
 
-function obtenerEstampaPorId(req, res){
+function obtenerVentaPorId(req, res){
     try {
-        DAO.obtenerEstampaPorId(req.params.idEstampa)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })   
-    } catch (error) {
-        respuestas.error(req, res, error, 500)
-    }
-}
-
-function obtenerEstampasPorArtista(req, res){
-    try {
-        DAO.obtenerEstampasPorArtista(req.params.cedula)
+        DAO.obtenerVentaPorId(req.params.idVenta)
         .then((msj)=>{
             respuestas.success(req, res, msj, 200)
         })
@@ -23,9 +12,9 @@ function obtenerEstampasPorArtista(req, res){
     }
 }
 
-function obtenerEstampasPorClasificacion(req, res){
+function obtenerVentasPorUsuario(req, res){
     try {
-        DAO.obtenerEstampasPorClasificacion(req.params.idClasificacion)
+        DAO.obtenerVentasPorUsuario(req.params.cedula)
         .then((msj)=>{
             respuestas.success(req, res, msj, 200)
         })
@@ -34,9 +23,20 @@ function obtenerEstampasPorClasificacion(req, res){
     }
 }
 
-function crearEstampa(req, res){
+function obtenerVentasUsuarioPorEstado(req, res){
     try {
-        DAO.crearEstampa(req.body)
+        DAO.obtenerVentasUsuarioPorEstado(req.body.cedula, req.body.estado)
+        .then((msj)=>{
+            respuestas.success(req, res, msj, 200)
+        })
+    } catch (error) {
+        respuestas.error(req, res, error, 500)
+    }
+}
+
+function crearVenta(req, res){
+    try {
+        DAO.crearVenta(req.body)
         .then((msj)=>{
             respuestas.success(req, res, msj, 200)
         })
@@ -46,8 +46,8 @@ function crearEstampa(req, res){
 }
 
 module.exports = {
-    obtenerEstampaPorId,
-    obtenerEstampasPorArtista,
-    obtenerEstampasPorClasificacion,
-    crearEstampa
+    obtenerVentaPorId,
+    obtenerVentasPorUsuario,
+    obtenerVentasUsuarioPorEstado,
+    crearVenta
 }

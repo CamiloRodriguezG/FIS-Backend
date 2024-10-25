@@ -5,7 +5,7 @@ function obtenerEstados(){
 }
 
 function obtenerPorId(id){
-    return db.ejecutarQuery(`SELECT * FROM EstadosEstampas where idEstadoEstampa=${id}`)
+    return db.ejecutarQuery(`SELECT * FROM EstadosEstampas WHERE idEstadoEstampa=${id}`)
 }
 
 module.exports = {

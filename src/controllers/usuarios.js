@@ -1,9 +1,9 @@
 const express = require('express')
-const respuestas = require('../res')
 const modelo = require('../models/usuariosModel')
 
 const router = express.Router()
 
-// router.get('/:cedula',modelo.obtenerPorCedula)
+router.get('/:cedula',modelo.obtenerUsuario)
+router.post('/crearUsuario', modelo.crearUsuario)
 
 module.exports = router;
