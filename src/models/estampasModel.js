@@ -3,7 +3,7 @@ const DAO = require('../DAO/estampasDAO')
 
 function obtenerEstampaPorId(req, res){
     try {
-        DAO.obtenerEstampaPorId(req.params.idEstampa)
+        DAO.obtenerEstampaPorId(req.params.codigoEstampa)
         .then((msj)=>{
             respuestas.success(req, res, msj, 200)
         })   
@@ -35,6 +35,11 @@ function obtenerEstampasPorClasificacion(req, res){
 }
 
 function crearEstampa(req, res){
+
+    const pathBase = `${req.protocol}://${req.get('host')}/src/public/imagenes-estampas/`
+    const nombreArchivo = req.file.filename
+    req.body.imagen = pathBase+nombreArchivo
+    console.log(req.body.imagen)
     try {
         DAO.crearEstampa(req.body)
         .then((msj)=>{

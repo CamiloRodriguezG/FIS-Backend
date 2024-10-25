@@ -4,7 +4,7 @@ const db = require('../DB/mysql')
 
 function obtenerEstampaPorId(codigoEstampa){
     return db.ejecutarQuery(
-        `SELECT * FROM Estampa WHERE codigoEstampa=${codigoEstampa}`
+        `SELECT * FROM Estampas WHERE codigoEstampa=${codigoEstampa}`
     )
 }
 
