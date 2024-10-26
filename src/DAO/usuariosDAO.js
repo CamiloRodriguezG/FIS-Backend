@@ -1,9 +1,22 @@
 const db = require('../DB/mysql')
 
+function obtenerTodos(){
+    return db.ejecutarQuery(
+        `SELECT * FROM Usuarios`
+    )
+}
+
 function obtenerUsuario(cedula){
     return db.ejecutarQuery(
         `SELECT * FROM Usuarios 
         WHERE cedula=${cedula}`
+    )
+}
+
+function obtenerUsuarioPorUsername(username){
+    return db.ejecutarQuery(
+        `SELECT * FROM Usuarios 
+        WHERE username='${username}'`
     )
 }
 
@@ -15,6 +28,8 @@ function crearUsuario(usuario){
 }
 
 module.exports = {
+    obtenerTodos,
     obtenerUsuario,
+    obtenerUsuarioPorUsername,
     crearUsuario
 }
