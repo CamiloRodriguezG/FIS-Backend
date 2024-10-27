@@ -20,12 +20,12 @@ const swaggerSpecs = {
         contact: {
             name: 'Camilo 😈'
         },
-        servers: [
-            {
-                url: "fis-backend-production.up.railway.app",
-                description: "Servidor al que hacer las requests"
-            }
-        ]
+        // servers: [
+        //     {
+        //         url: "fis-backend-production.up.railway.app",
+        //         description: "Servidor al que hacer las requests"
+        //     }
+        // ]
     },
     apis: [
         `${path.join(__dirname, "./controllers/*.js")}`
