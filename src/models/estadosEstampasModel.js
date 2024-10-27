@@ -1,25 +1,21 @@
 const respuestas = require('../res')
 const DAO = require('../DAO/estadosEstampasDAO')
 
-function obtenerTodos(req, res){
+async function obtenerTodos(req, res){
     try {
-        DAO.obtenerEstados()
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.obtenerEstados()
+        respuestas.success(req, res, resultado, 200)    
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function obtenerPorId(req, res){
+async function obtenerPorId(req, res){
     try {
-        DAO.obtenerPorId(req.params.id)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.obtenerPorId(req.params.id)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 

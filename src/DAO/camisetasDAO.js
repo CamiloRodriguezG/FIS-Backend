@@ -1,26 +1,21 @@
 const db = require('../DB/mysql')
 
-// Funciones GET
-
-function obtenerCamisetasPorVenta(idVenta){
-    return db.ejecutarQuery(
-        `SELECT * FROM Camisetas WHERE idVenta=${idVenta}`
-    )
+async function obtenerCamisetasPorVenta(idVenta){
+    const query = 'SELECT * FROM Camisetas WHERE idVenta = ?'
+    const params = [idVenta]
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerCamisetasPorCodigo(codigoCamiseta){
-    return db.ejecutarQuery(
-        `SELECT * FROM Camisetas WHERE codigoCamiseta=${codigoCamiseta}`
-    )
+async function obtenerCamisetasPorCodigo(codigoCamiseta){
+    const query = 'SELECT * FROM Camisetas WHERE codigoCamiseta = ?'
+    const params = [codigoCamiseta]
+    return db.ejecutarQuery(query, params)
 }
-
-// Funciones POST
 
 function crearCamiseta(camiseta){
-    return db.ejecutarQuery(
-        `INSERT INTO Camisetas(color, precio, talla, idVenta, idPosicion, idMaterial, codigoEstampa) VALUES
-        ('${camiseta.color}', ${camiseta.precio}, '${camiseta.talla}', ${camiseta.idVenta}, ${camiseta.idPosicion}, ${camiseta.idMaterial}, ${camiseta.codigoEstampa})`
-    )
+    const query = 'INSERT INTO Camisetas(color, precio, talla, idVenta, idPosicion, idMaterial, codigoEstampa) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    const params = [camiseta.color, camiseta.precio, camiseta.talla, camiseta.idVenta, camiseta.idPosicion, camiseta.idMaterial, camiseta.codigoEstampa]
+    return db.ejecutarQuery(query, params)
 }
 
 module.exports = {

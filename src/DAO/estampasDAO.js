@@ -1,32 +1,27 @@
 const db = require('../DB/mysql')
 
-// Funciones GET
-
-function obtenerEstampaPorId(codigoEstampa){
-    return db.ejecutarQuery(
-        `SELECT * FROM Estampas WHERE codigoEstampa=${codigoEstampa}`
-    )
+async function obtenerEstampaPorId(codigoEstampa){
+    const query = 'SELECT * FROM Estampas WHERE codigoEstampa = ?'
+    const params = [codigoEstampa]
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerEstampasPorArtista(cedula){
-    return db.ejecutarQuery(
-        `SELECT * FROM Estampas WHERE cedula=${cedula}`
-    )
+async function obtenerEstampasPorArtista(cedula){
+    const query = 'SELECT * FROM Estampas WHERE cedula = ?'
+    const params = [cedula]
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerEstampasPorClasificacion(idClasificacion){
-    return db.ejecutarQuery(
-        `SELECT * FROM Estampas WHERE idClasificacion=${idClasificacion}`
-    )
+async function obtenerEstampasPorClasificacion(idClasificacion){
+    const query = 'SELECT * FROM Estampas WHERE idClasificacion = ?'
+    const params = [idClasificacion]
+    return db.ejecutarQuery(query, params)
 }
-
-// Funciones POST
 
 function crearEstampa(estampa){
-    return db.ejecutarQuery(
-        `INSERT INTO Estampas(nombreEstampa, descripcionEstampa, precio, stock, imagen, idClasificacion, idEstadoEstampa, cedula) VALUES
-        ('${estampa.nombreEstampa}', '${estampa.descripcionEstampa}', ${estampa.precio}, ${estampa.stock}, '${estampa.imagen}', ${estampa.idClasificacion}, ${estampa.idEstadoEstampa}, ${estampa.cedula})`
-    )
+    const query = 'INSERT INTO Estampas(nombreEstampa, descripcionEstampa, precio, stock, imagen, idClasificacion, idEstadoEstampa, cedula) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    const params = [estampa.nombreEstampa, estampa.descripcionEstampa, estampa.precio, estampa.stock, estampa.imagen, estampa.idClasificacion, estampa.idEstadoEstampa, estampa.cedula]
+    return db.ejecutarQuery(query, params)
 }
 
 module.exports = {

@@ -1,47 +1,39 @@
 const respuestas = require('../res')
 const DAO = require('../DAO/ventasDAO')
 
-function obtenerVentaPorId(req, res){
+async function obtenerVentaPorId(req, res){
     try {
-        DAO.obtenerVentaPorId(req.params.idVenta)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.obtenerVentaPorId(req.params.idVenta)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function obtenerVentasPorUsuario(req, res){
+async function obtenerVentasPorUsuario(req, res){
     try {
-        DAO.obtenerVentasPorUsuario(req.params.cedula)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.obtenerVentasPorUsuario(req.params.cedula)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function obtenerVentasUsuarioPorEstado(req, res){
+async function obtenerVentasUsuarioPorEstado(req, res){
     try {
-        DAO.obtenerVentasUsuarioPorEstado(req.body.cedula, req.body.estado)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.obtenerVentasUsuarioPorEstado(req.body.cedula, req.body.estado)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function crearVenta(req, res){
+async function crearVenta(req, res){
     try {
-        DAO.crearVenta(req.body)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })
+        const resultado = await DAO.crearVenta(req.body)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 

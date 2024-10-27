@@ -1,36 +1,30 @@
 const respuestas = require('../res')
 const DAO = require('../DAO/camisetasDAO')
 
-function obtenerCamisetasPorVenta(req, res){
+async function obtenerCamisetasPorVenta(req, res){
     try {
-        DAO.obtenerCamisetasPorVenta(req.params.idVenta)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })     
+        const resultado = await DAO.obtenerCamisetasPorVenta(req.params.idVenta)
+        respuestas.success(req, res, resultado, 200)     
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function obtenerCamisetasPorCodigo(req, res){
+async function obtenerCamisetasPorCodigo(req, res){
     try {
-        DAO.obtenerCamisetasPorCodigo(req.params.codigo)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })  
+        const resultado = await DAO.obtenerCamisetasPorCodigo(req.params.codigo)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 
-function crearCamiseta(req, res){
+async function crearCamiseta(req, res){
     try {
-        DAO.crearCamiseta(req.body)
-        .then((msj)=>{
-            respuestas.success(req, res, msj, 200)
-        })   
+        const resultado = DAO.crearCamiseta(req.body)
+        respuestas.success(req, res, resultado, 200)
     } catch (error) {
-        respuestas.error(req, res, error, 500)
+        respuestas.error(req, res, error.message, 500)
     }
 }
 

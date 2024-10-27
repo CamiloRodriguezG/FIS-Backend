@@ -1,35 +1,38 @@
 const db = require('../DB/mysql')
 
-function obtenerTodos(){
-    return db.ejecutarQuery(
-        `SELECT * FROM Usuarios`
-    )
+async function obtenerTodos(){
+    const query = 'SELECT * FROM Usuarios'
+    return db.ejecutarQuery(query)
 }
 
-function obtenerUsuario(cedula){
-    return db.ejecutarQuery(
-        `SELECT * FROM Usuarios 
-        WHERE cedula=${cedula}`
-    )
+async function obtenerUsuario(cedula){
+    const query = 'SELECT * FROM Usuarios WHERE cedula = ?'
+    const params = [cedula]
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerUsuarioPorUsername(username){
-    return db.ejecutarQuery(
-        `SELECT * FROM Usuarios 
-        WHERE username='${username}'`
-    )
+async function obtenerUsuarioPorUsername(username){
+    const query = 'SELECT * FROM Usuarios WHERE username = ?'
+    const params = [username]
+    return db.ejecutarQuery(query, params)
 }
 
-function crearUsuario(usuario){
-    return db.ejecutarQuery(`
-        INSERT INTO Usuarios(cedula, nombre, username, contraseña, direccion, telefono, idRol) VALUES
-        (${usuario.cedula}, '${usuario.nombre}', '${usuario.username}', '${usuario.contraseña}', '${usuario.direccion}', ${usuario.telefono}, ${usuario.idRol})
-    `)
+async function crearUsuario(usuario){
+    const query = 'INSERT INTO Usuarios(cedula, nombre, username, contraseña, direccion, telefono, idRol) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    const params = [usuario.cedula, usuario.nombre, usuario.username, usuario.contraseña, usuario.direccion, usuario.telefono, usuario.idRol]
+    return db.ejecutarQuery(query, params)
+}
+
+async function borrarUsuario(cedula){
+    const query = 'DELETE FROM Usuarios WHERE cedula = ?'
+    const params = [cedula]
+    return db.ejecutarQuery(query, params)
 }
 
 module.exports = {
     obtenerTodos,
     obtenerUsuario,
     obtenerUsuarioPorUsername,
-    crearUsuario
+    crearUsuario,
+    borrarUsuario
 }

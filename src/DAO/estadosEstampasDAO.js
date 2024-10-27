@@ -1,11 +1,14 @@
 const db = require('../DB/mysql')
 
 function obtenerEstados(){
-    return db.ejecutarQuery('SELECT * FROM EstadosEstampas')
+    const query = 'SELECT * FROM EstadosEstampas' 
+    return db.ejecutarQuery(query)
 }
 
 function obtenerPorId(id){
-    return db.ejecutarQuery(`SELECT * FROM EstadosEstampas WHERE idEstadoEstampa=${id}`)
+    const query = 'SELECT * FROM EstadosEstampas WHERE idEstadoEstampa = ?'
+    const params = [id]
+    return db.ejecutarQuery(query, params)
 }
 
 module.exports = {

@@ -44,9 +44,6 @@ app.use(bodyParser.json());
 app.use(morgan("dev"))
 
 // Rutas
-// app.use('/', (req, res)=>{
-//     res.send("Aca no hay nada, ir a /docs")
-// })
 app.use('/',rutas)
 // Ruta para documentacion
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpecs)))

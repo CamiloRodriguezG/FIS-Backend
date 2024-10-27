@@ -134,4 +134,6 @@ router.post('/crearUsuario', modelo.crearUsuario)
  */
 router.post('/login', modelo.login)
 
+router.delete('/borrar/:cedula', modelo.borrarUsuario)
+
 module.exports = router;

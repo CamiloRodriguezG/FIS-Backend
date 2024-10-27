@@ -1,28 +1,27 @@
 const db = require('../DB/mysql')
 
-function obtenerVentaPorId(id){
-    return db.ejecutarQuery(
-        `SELECT * FROM Ventas WHERE idVenta=${id}`
-    )
+async function obtenerVentaPorId(id){
+    const query = 'SELECT * FROM Ventas WHERE idVenta = ?'
+    const params = [id]
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerVentasPorUsuario(cedula){
-    return db.ejecutarQuery(
-        `SELECT * FROM Ventas WHERE cedula=${cedula}`
-    )
+async function obtenerVentasPorUsuario(cedula){
+    const query = 'SELECT * FROM Ventas WHERE cedula = ?'
+    const params = [cedula] 
+    return db.ejecutarQuery(query, params)
 }
 
-function obtenerVentasUsuarioPorEstado(cedula, estado){
-    return db.ejecutarQuery(
-        `SELECT * FROM Ventas WHERE cedula=${cedula} AND idEstadoVenta =${estado}`
-    )
+async function obtenerVentasUsuarioPorEstado(cedula, estado){
+    const query = 'SELECT * FROM Ventas WHERE cedula = ? AND idEstadoVenta = ?'
+    const params = [cedula, estado]
+    return db.ejecutarQuery(query, params)
 }
 
 function crearVenta(venta){
-    return db.ejecutarQuery(
-        `INSERT INTO Ventas(fecha, valorTotal, cedula, idEstadoVenta) VALUES
-        (${venta.fecha}, ${venta.valorTotal}, ${venta.cedula}, ${venta.idEstadoVenta})`
-    )
+    const query = 'INSERT INTO Ventas(fecha, valorTotal, cedula, idEstadoVenta) VALUES(?, ?, ?, ?)'
+    const params = [venta.fecha, venta.valorTotal, venta.cedula, venta.idEstadoVenta]
+    return db.ejecutarQuery(query, params)
 }
 
 module.exports = {

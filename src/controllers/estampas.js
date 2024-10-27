@@ -9,7 +9,7 @@ const FILE_TYPE_MAP = {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'src/public/imagenes-estampas')
+        cb(null, 'src/public/imagenes-estampas/')
     },
     filename: function (req, file, cb) {
         const extension = FILE_TYPE_MAP[file.mimetype]
