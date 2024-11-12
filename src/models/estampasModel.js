@@ -1,4 +1,5 @@
 const respuestas = require('../res')
+const fs = require('fs')
 const DAO = require('../DAO/estampasDAO')
 
 async function obtenerEstampaPorId(req, res){
@@ -35,7 +36,28 @@ async function crearEstampa(req, res){
     console.log(req.body.imagen)
     try {
         const resultado = await DAO.crearEstampa(req.body)
-        respuestas.success(req, res, resultado, 200)
+        respuestas.success(req, res, resultado, 201)
+    } catch (error) {
+        respuestas.error(req, res, error.message, 500)
+    }
+}
+
+async function modificarEstampa(req, res){
+    //Eliminar anterior imagen
+    const oldPath = req.body.imagen
+    fs.unlink(oldPath, (err) => {
+        if (err) {
+            console.error('Error al eliminar la imagen:', err);
+            return respuestas.error(req, res, 'Error al eliminar la imagen', 500)
+        }
+    });
+
+    const pathBase = `${req.protocol}://${req.get('host')}/src/public/imagenes-estampas/`
+    const nombreArchivo = req.file.filename
+    req.body.imagen = pathBase+nombreArchivo
+    try {
+        const resultado = await DAO.modificarEstampa(req.body)
+        respuestas.success(req, res, resultado, 201)
     } catch (error) {
         respuestas.error(req, res, error.message, 500)
     }
@@ -45,5 +67,6 @@ module.exports = {
     obtenerEstampaPorId,
     obtenerEstampasPorArtista,
     obtenerEstampasPorClasificacion,
-    crearEstampa
+    crearEstampa,
+    modificarEstampa
 }

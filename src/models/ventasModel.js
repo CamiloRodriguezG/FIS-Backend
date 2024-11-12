@@ -31,7 +31,7 @@ async function obtenerVentasUsuarioPorEstado(req, res){
 async function crearVenta(req, res){
     try {
         const resultado = await DAO.crearVenta(req.body)
-        respuestas.success(req, res, resultado, 200)
+        respuestas.success(req, res, resultado, 201)
     } catch (error) {
         respuestas.error(req, res, error.message, 500)
     }

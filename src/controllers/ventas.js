@@ -137,7 +137,7 @@ router.get('/usuario/estado', modelo.obtenerVentasUsuarioPorEstado)
  *          }
  *      }
  *      responses: {
- *          200: {
+ *          201: {
  *              description: venta creado,
  *              content: {application/json: {}} 
  *          },

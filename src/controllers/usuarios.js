@@ -22,11 +22,7 @@ router.get('/', modelo.obtenerTodos)
  *      ]
  *      responses: {
  *          200: {
- *              description: usuario encontrado,
- *              content: {application/json: {}} 
- *          },
- *          500: {
- *              description: usuario no encontrado,
+ *              description: usuario encontrado o array vacio si no existe usuario,
  *              content: {application/json: {}} 
  *          }
  *      }
@@ -81,7 +77,7 @@ router.get('/:cedula',modelo.obtenerUsuario)
  *          }
  *      }
  *      responses: {
- *          200: {
+ *          201: {
  *              description: usuario creado,
  *              content: {application/json: {}} 
  *          },

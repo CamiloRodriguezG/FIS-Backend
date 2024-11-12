@@ -16,16 +16,7 @@ const swaggerSpecs = {
             title: 'FIS API 🤓☝️',
             version: '1.0.0',
             
-        },
-        contact: {
-            name: 'Camilo 😈'
-        },
-        // servers: [
-        //     {
-        //         url: "fis-backend-production.up.railway.app",
-        //         description: "Servidor al que hacer las requests"
-        //     }
-        // ]
+        }
     },
     apis: [
         `${path.join(__dirname, "./controllers/*.js")}`

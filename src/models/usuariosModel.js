@@ -26,7 +26,7 @@ async function crearUsuario(req, res){
     usuario.contraseña = await bcrypt.hash(req.body.contraseña, saltRounds)
     try {
         const resultado = await DAO.crearUsuario(usuario)
-        respuestas.success(req, res, resultado, 200)
+        respuestas.success(req, res, resultado, 201)
     } catch (error) {
         respuestas.error(req, res, error.message, 500)
     }

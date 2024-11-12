@@ -23,8 +23,6 @@ async function conexionDB(){
     }
 }
 
-conexionDB()
-
 async function ejecutarQuery(query, params = []){
     try {
         const [results] = await conexion.query(query, params)
@@ -34,4 +32,8 @@ async function ejecutarQuery(query, params = []){
     }
 }
 
-module.exports = {ejecutarQuery}
+async function cerrarConexion(){
+    await conexion.end()
+}
+
+module.exports = {conexionDB, ejecutarQuery, cerrarConexion}

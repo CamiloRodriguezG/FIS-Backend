@@ -108,7 +108,7 @@ router.get('/venta/:idVenta',modelo.obtenerCamisetasPorVenta)
  *          }
  *      }
  *      responses: {
- *          200: {
+ *          201: {
  *              description: estampa creado,
  *              content: {application/json: {}} 
  *          },

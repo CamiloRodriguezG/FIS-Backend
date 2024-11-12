@@ -160,7 +160,7 @@ router.get('/clasificacion/:idClasificacion', modelo.obtenerEstampasPorClasifica
  *          }
  *      }
  *      responses: {
- *          200: {
+ *          201: {
  *              description: estampa creado,
  *              content: {application/json: {}} 
  *          },
@@ -172,5 +172,73 @@ router.get('/clasificacion/:idClasificacion', modelo.obtenerEstampasPorClasifica
  *      
  */
 router.post('/crearEstampa', upload.single('imagen'), modelo.crearEstampa)
+
+/**
+ * @swagger
+ * /estampas/modificarEstampa:
+ *  put:
+ *      description: Modificar una estampa ajustando los datos de esta con los datos pasados
+ *      summary: Modificar una estampa
+ *      tags: [Estampas]
+ *      requestBody: {
+ *          content: {
+ *              application/x-www-form-urlencoded: {
+ *                  schema: {
+ *                      type: object,
+ *                      properties: {
+ *                          nombreEstampa: {
+ *                              description: Nombre de la estampa,
+ *                              type: string
+ *                          },
+ *                          descripcionEstampa: {
+ *                              description: Descripcion de la estampa,
+ *                              type: string
+ *                          },
+ *                          precio: {
+ *                              description: Precio de la estampa,
+ *                              type: integer
+ *                          },
+ *                          stock: {
+ *                              description: Stock incial de la estampa,
+ *                              type: integer
+ *                          },
+ *                          imagen: {
+ *                              description: ARCHIVO DE LA ESTAMPA,
+ *                              type: file
+ *                          },
+ *                          idClasificacion: {
+ *                              description: Id de la clasifiacacion de la estampa,
+ *                              type: integer
+ *                          },
+ *                          idEstadoEstampa: {
+ *                              description: Id del estado inicial de la estampa,
+ *                              type: integer
+ *                          },
+ *                          cedula: {
+ *                              description: Cedula del artista,
+ *                              type: integer
+ *                          },
+ *                          codigoEstampa: {
+ *                              description: Codigo de la estampa a modificar,
+ *                              type: integer
+ *                          }
+ *                      }
+ *                  }
+ *              }
+ *          }
+ *      }
+ *      responses: {
+ *          201: {
+ *              description: estampa modificada,
+ *              content: {application/json: {}} 
+ *          },
+ *          500: {
+ *              description: estampa no se pudo modificar,
+ *              content: {application/json: {}} 
+ *          }
+ *      }
+ *      
+ */
+router.put('/modificarEstampa', upload.single('imagen'), modelo.modificarEstampa)
 
 module.exports = router;
