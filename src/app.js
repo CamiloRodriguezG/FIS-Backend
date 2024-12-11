@@ -1,4 +1,5 @@
 const express = require('express') 
+const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const config = require('./config')
@@ -13,7 +14,7 @@ const swaggerSpecs = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'FIS API 🤓☝️',
+            title: 'API documentacion: E - commerce de camisetas',
             version: '1.0.0',
             
         }
@@ -24,7 +25,7 @@ const swaggerSpecs = {
 }
 
 const app = express()
-
+app.use(cors())
 // Configuracion
 app.set('port', config.app.port)
 
