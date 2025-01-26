@@ -163,14 +163,6 @@ router.get('/clasificacion/:idClasificacion', modelo.obtenerEstampasPorClasifica
  *                              description: ARCHIVO DE LA ESTAMPA,
  *                              type: file
  *                          },
- *                          idClasificacion: {
- *                              description: Id de la clasifiacacion de la estampa,
- *                              type: integer
- *                          },
- *                          idEstadoEstampa: {
- *                              description: Id del estado inicial de la estampa,
- *                              type: integer
- *                          },
  *                          cedula: {
  *                              description: Cedula del artista,
  *                              type: integer
@@ -226,14 +218,6 @@ router.post('/crearEstampa', upload.single('imagen'), modelo.crearEstampa)
  *                          imagen: {
  *                              description: ARCHIVO DE LA ESTAMPA,
  *                              type: file
- *                          },
- *                          idClasificacion: {
- *                              description: Id de la clasifiacacion de la estampa,
- *                              type: integer
- *                          },
- *                          idEstadoEstampa: {
- *                              description: Id del estado inicial de la estampa,
- *                              type: integer
  *                          },
  *                          cedula: {
  *                              description: Cedula del artista,

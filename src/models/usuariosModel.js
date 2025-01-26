@@ -12,6 +12,15 @@ async function obtenerTodos(req, res){
     }
 }
 
+async function obtenerCedulaPorUsuario(req, res){
+    try {
+        const resultado = await DAO.obtenerCedulaPorUsuario(req.params.username)
+        respuestas.success(req, res, resultado, 200)
+    } catch (error) {
+        respuestas.error(req, res, error.message, 500)
+    }
+}
+
 async function obtenerUsuario(req, res){
     try {
         const resultado = await DAO.obtenerUsuario(req.params.cedula)
@@ -63,6 +72,7 @@ async function borrarUsuario(req, res){
 
 module.exports = {
     obtenerTodos,
+    obtenerCedulaPorUsuario,
     obtenerUsuario,
     crearUsuario,
     login,

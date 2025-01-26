@@ -5,6 +5,12 @@ async function obtenerTodos(){
     return db.ejecutarQuery(query)
 }
 
+async function obtenerCedulaPorUsuario(username) {
+    const query = 'SELECT cedula FROM Usuarios WHERE username = ?'
+    const params = [username]
+    return db.ejecutarQuery(query, params)
+}
+
 async function obtenerUsuario(cedula){
     const query = 'SELECT * FROM Usuarios WHERE cedula = ?'
     const params = [cedula]
@@ -31,6 +37,7 @@ async function borrarUsuario(cedula){
 
 module.exports = {
     obtenerTodos,
+    obtenerCedulaPorUsuario,
     obtenerUsuario,
     obtenerUsuarioPorUsername,
     crearUsuario,

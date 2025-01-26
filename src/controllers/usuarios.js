@@ -7,6 +7,31 @@ router.get('/', modelo.obtenerTodos)
 
 /**
  * @swagger
+ * /usuarios/username/{username}:
+ *  get:
+ *      description: Retorna la cedula del usuario con el username pasado
+ *      summary: Obtener cedula por username
+ *      tags: [Usuarios]
+ *      parameters: [
+ *          {
+ *              name: username,
+ *              in: path,
+ *              description: username del usuario,
+ *              required: true
+ *          }
+ *      ]
+ *      responses: {
+ *          200: {
+ *              description: usuario encontrado o array vacio si no existe usuario,
+ *              content: {application/json: {}} 
+ *          }
+ *      }
+ *      
+ */
+router.get('/username/:username',modelo.obtenerCedulaPorUsuario)
+
+/**
+ * @swagger
  * /usuarios/{cedula}:
  *  get:
  *      description: Retorna toda la informacion del usuario que tiene la cedula enviada
