@@ -24,6 +24,27 @@ const router = express.Router()
 
 /**
  * @swagger
+ * /estampas/:
+ *  get:
+ *      description: Retorna todas las estampas con su informacion
+ *      summary: Obtener estampas
+ *      tags: [Estampas]
+ *      responses: {
+ *          200: {
+ *              description: Estampas retornadas,
+ *              content: {application/json: {}} 
+ *          },
+ *          500: {
+ *              description: Error interno,
+ *              content: {application/json: {}} 
+ *          }
+ *      }
+ *      
+ */
+router.get('/', modelo.obtenerTodas)
+
+/**
+ * @swagger
  * /estampas/{codigoEstampa}:
  *  get:
  *      description: Retorna toda la informacion de la estampa con el codigo pasado

@@ -2,6 +2,15 @@ const respuestas = require('../res')
 const fs = require('fs')
 const DAO = require('../DAO/estampasDAO')
 
+async function obtenerTodas(req, res){
+    try {
+        const resultado = await DAO.obtenerTodas()
+        respuestas.success(req, res, resultado, 200)
+    } catch (error) {
+        respuestas.error(req, res, error.message, 500)
+    }
+}
+
 async function obtenerEstampaPorId(req, res){
     try {
         const resultado = await DAO.obtenerEstampaPorId(req.params.codigoEstampa)
@@ -64,6 +73,7 @@ async function modificarEstampa(req, res){
 }
 
 module.exports = {
+    obtenerTodas,
     obtenerEstampaPorId,
     obtenerEstampasPorArtista,
     obtenerEstampasPorClasificacion,

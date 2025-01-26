@@ -41,7 +41,7 @@ async function login(req, res){
             bcrypt.compare(req.body.contraseña, usuario[0].contraseña)
             .then((resultado) => {
                 if(resultado){
-                    respuestas.success(req, res, "Logeo correcto", 200)
+                    respuestas.success(req, res, {'RolId': usuario[0].idRol}, 200)
                 }else{
                     respuestas.error(req, res, "Contraseña incorrecta", 500)
                 }

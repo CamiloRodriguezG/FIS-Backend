@@ -10,6 +10,13 @@ afterAll(async () => {
     await mysql.cerrarConexion()
 });
 
+describe('/GET /', () => {
+    test('Responde con 200', async () => {
+        const response = await request(app).get('/estampas/').send()
+        expect(response.status).toBe(200)
+    })
+});
+
 describe('/GET /:codigoEstampa', () => {
     test('Responde con 200', async () => {
         const response = await request(app).get('/estampas/1').send()

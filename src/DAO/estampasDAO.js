@@ -1,5 +1,10 @@
 const db = require('../DB/mysql')
 
+async function obtenerTodas() {
+    const query = 'SELECT * FROM Estampas'
+    return db.ejecutarQuery(query)
+}
+
 async function obtenerEstampaPorId(codigoEstampa){
     const query = 'SELECT * FROM Estampas WHERE codigoEstampa = ?'
     const params = [codigoEstampa]
@@ -31,6 +36,7 @@ async function modificarEstampa(estampa){
 }
 
 module.exports = {
+    obtenerTodas,
     obtenerEstampaPorId,
     obtenerEstampasPorArtista,
     obtenerEstampasPorClasificacion,
