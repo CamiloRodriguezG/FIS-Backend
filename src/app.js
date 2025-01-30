@@ -35,6 +35,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(morgan("dev"))
 
+
+// Servir la carpeta 'public' como archivos estáticos
+app.use('/src/public/imagenes-estampas', express.static(path.join(__dirname, 'public/imagenes-estampas')));
 // Rutas
 app.use('/',rutas)
 // Ruta para documentacion

@@ -246,4 +246,33 @@ router.post('/crearEstampa', upload.single('imagen'), modelo.crearEstampa)
  */
 router.put('/modificarEstampa', upload.single('imagen'), modelo.modificarEstampa)
 
+/**
+ * @swagger
+ * /estampas/{codigoEstampa}:
+ *  delete:
+ *      description: Elimina la estampa con el codigo pasado
+ *      summary: Eliminar estampa
+ *      tags: [Estampas]
+ *      parameters: [
+ *          {
+ *              name: codigoEstampa,
+ *              in: path,
+ *              description: Codigo de la estampa,
+ *              required: true
+ *          }
+ *      ]
+ *      responses: {
+ *          200: {
+ *              description: Estampa eliminada,
+ *              content: {application/json: {}} 
+ *          },
+ *          500: {
+ *              description: Error interno (?,
+ *              content: {application/json: {}} 
+ *          }
+ *      }
+ *      
+ */
+router.delete('/:codigoEstampa', modelo.eliminarEstampaPorId)
+
 module.exports = router;

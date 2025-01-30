@@ -72,11 +72,21 @@ async function modificarEstampa(req, res){
     }
 }
 
+async function eliminarEstampaPorId(req, res){
+    try {
+        const resultado = await DAO.eliminarEstampa(req.params.codigoEstampa)
+        respuestas.success(req, res, resultado, 200)
+    } catch (error) {
+        respuestas.error(req, res, error.message, 500)
+    }
+}
+
 module.exports = {
     obtenerTodas,
     obtenerEstampaPorId,
     obtenerEstampasPorArtista,
     obtenerEstampasPorClasificacion,
     crearEstampa,
-    modificarEstampa
+    modificarEstampa,
+    eliminarEstampaPorId
 }

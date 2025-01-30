@@ -35,11 +35,18 @@ async function modificarEstampa(estampa){
     return db.ejecutarQuery(query, params)
 }
 
+async function eliminarEstampa(codigoEstampa) {
+    const query = 'DELETE FROM Estampas WHERE codigoEstampa = ?'
+    const params = [codigoEstampa]
+    return db.ejecutarQuery(query, params)
+}
+
 module.exports = {
     obtenerTodas,
     obtenerEstampaPorId,
     obtenerEstampasPorArtista,
     obtenerEstampasPorClasificacion,
     crearEstampa,
-    modificarEstampa
+    modificarEstampa,
+    eliminarEstampa
 }
