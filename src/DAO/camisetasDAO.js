@@ -15,6 +15,7 @@ async function obtenerCamisetasPorCodigo(codigoCamiseta){
 function crearCamiseta(camiseta){
     const query = 'INSERT INTO Camisetas(color, precio, talla, idVenta, idPosicion, idMaterial, codigoEstampa) VALUES (?, ?, ?, ?, ?, ?, ?)'
     const params = [camiseta.color, camiseta.precio, camiseta.talla, camiseta.idVenta, camiseta.idPosicion, camiseta.idMaterial, camiseta.codigoEstampa]
+    db.ejecutarQuery('CALL ACTUALIZAR_STOCK(?)', [camiseta.codigoEstampa])
     return db.ejecutarQuery(query, params)
 }
 
